@@ -55,6 +55,3 @@ ros2 launch sprint4.launch.py
   - El robot navegará usando **visión artificial** (sin mapa ni odometría) hasta el marcador.
 
 <!-- end list -->
-
-```
-```
