@@ -1,12 +1,11 @@
 
 
-````markdown
-# Instrucciones de ejecución – g04_prii3_sprint4 (Eurobot 2026)
 
------
+# Instrucciones de ejecución – g04_prii3_sprint4 (Eurobot 2026)
 
 ## 1\. Configuración Previa (Modelos)
 
+````markdown
 **IMPORTANTE:** Para que la simulación cargue correctamente las texturas del tablero y el robot modificado, es
  necesario copiar los modelos personalizados al directorio de Gazebo.
 
