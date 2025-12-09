@@ -31,7 +31,7 @@ class ConductorInfinito(Node):
         # CONTROL
         self.kp_angular = 0.004
         self.kp_linear = 0.0006
-        self.distancia_minima = 90
+        self.distancia_minima = 45
 
     def set_nuevo_destino(self, target_id):
         """Función para actualizar el destino desde el menú"""
