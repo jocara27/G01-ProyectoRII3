@@ -8,6 +8,7 @@
 ````markdown
 **IMPORTANTE:** Para que la simulación cargue correctamente las texturas del tablero y el robot modificado, es
  necesario copiar los modelos personalizados al directorio de Gazebo.
+````
 
 Ejecuta estos comandos para copiar las carpetas incluidas en este repositorio a tu carpeta de modelos:
 
