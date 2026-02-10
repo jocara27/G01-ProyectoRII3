@@ -1,0 +1,288 @@
+<?xml version='1.0'?>
+<sdf version='1.7'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>2.01466 -2.25769 8.19165 0 1.2418 1.49223</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+
+    <model name='overhead_camera'>
+      <static>1</static>
+      <pose>1.5 0 1.5 -0 1 1.57</pose>
+      <link name='camera_link'>
+        <sensor name='camera_sensor' type='camera'>
+          <always_on>1</always_on>
+          <update_rate>20</update_rate>
+          <camera>
+            <horizontal_fov>1.75</horizontal_fov>
+            <image>
+              <width>1280</width>
+              <height>720</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <visualize>1</visualize>
+          <topic>/overhead_camera/image_raw</topic>
+          <plugin name='gazebo_ros_camera' filename='libgazebo_ros_camera.so'>
+            <always_on>1</always_on>
+            <update_rate>30</update_rate>
+            <camera_name>overhead_camera</camera_name>
+            <image_topic_name>image_raw</image_topic_name>
+            <camera_info_topic_name>camera_info</camera_info_topic_name>
+            <frame_name>overhead_camera_link</frame_name>
+          </plugin>
+        </sensor>
+      </link>
+    </model>
+
+    <model name='aruco_marker_01'>
+      <static>1</static>
+      <pose>0.15 0.15 0.02 0 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.2 0.2 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://Building_Tablerov1/materials/scripts</uri>
+              <uri>model://Building_Tablerov1/materials/textures</uri>
+              <name>Aruco/Marker1</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name='Building_Tablerov1'>
+      <static>1</static> <pose>1.47973 0.990701 0 0 0 -3.14</pose>
+      
+      <link name='Wall_0'>
+        <pose>-0 1 0.035 0 -0 0</pose>
+        <visual name='Wall_0_Visual'>
+          <geometry>
+            <box>
+              <size>3.03 0.03 0.07</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='Wall_0_Collision'>
+          <geometry>
+            <box>
+              <size>3.03 0.03 0.07</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name='Wall_1'>
+        <pose>1.5 -0 0.035 0 -0 -1.5708</pose>
+        <visual name='Wall_1_Visual'>
+          <geometry>
+            <box>
+              <size>2.03 0.03 0.07</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='Wall_1_Collision'>
+          <geometry>
+            <box>
+              <size>2.03 0.03 0.07</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name='Wall_2'>
+        <pose>0 -1 0.035 0 -0 3.14159</pose>
+        <visual name='Wall_2_Visual'>
+          <geometry>
+            <box>
+              <size>3.03 0.03 0.07</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='Wall_2_Collision'>
+          <geometry>
+            <box>
+              <size>3.03 0.03 0.07</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name='Wall_5'>
+        <pose>-1.5 0 0.035 0 -0 1.5708</pose>
+        <visual name='Wall_5_Visual'>
+          <geometry>
+            <box>
+              <size>2.03 0.03 0.07</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='Wall_5_Collision'>
+          <geometry>
+            <box>
+              <size>2.03 0.03 0.07</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+      
+      <link name='link_0'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx> <ixy>0</ixy> <ixz>0</ixz>
+            <iyy>0.166667</iyy> <iyz>0</iyz> <izz>0.166667</izz>
+          </inertia>
+        </inertial>
+        <pose>0 0 0.01 0 -0 0</pose>
+        
+        <visual name='visual'>
+          <pose>0 0 0.005 0 -0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>2 3 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://Building_Tablerov1/materials/scripts</uri>
+              <uri>model://Building_Tablerov1/materials/textures</uri>
+              <name>Building_Tablero/ImagenSuelo</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+            <shader type='pixel'/>
+          </material>
+        </visual>
+        
+        <collision name='collision'>
+          <pose>0 0 0 0 -0 1.5708</pose> 
+          <geometry>
+            <box>
+              <size>2 3 0.01</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+    </model>
+
+    <include>
+      <uri>model://turtlebot3_waffle1</uri>
+      <name>mi_robot_turtlebot</name>
+      <pose>0.46 0.3 0.02 0.0004 0.01 1.6</pose>
+    </include>
+  </world>
+</sdf>

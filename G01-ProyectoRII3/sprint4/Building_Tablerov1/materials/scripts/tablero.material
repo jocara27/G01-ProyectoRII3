@@ -1,0 +1,14 @@
+material Building_Tablero/ImagenSuelo
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture Imagen_Tablero.png
+        scale 1 1
+      }
+    }
+  }
+}

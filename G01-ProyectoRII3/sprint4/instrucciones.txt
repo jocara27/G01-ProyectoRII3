@@ -1,0 +1,69 @@
+¡Exacto\! Esa es la clave. El archivo `.world` es solo un **guion de texto** que dice "pon esto aquí y esto allá", pero no contiene las imágenes, ni las formas 3D, ni las texturas.
+
+Si solo le pasas el archivo `.world`, su Gazebo intentará buscar "Building\_Tablero" o "Robot\_Con\_Aruco", no los encontrará en su ordenador y **verá el mundo vacío o con errores**.
+
+Para que a tu compañero le funcione a la primera, tienes que prepararle un **"Pack de Entrega"**.
+
+Aquí tienes la guía paso a paso de qué meter en ese Pack y las instrucciones que debes darle:
+
+### 1\. Qué meter en el ZIP (El Pack)
+
+Crea una carpeta nueva en tu escritorio llamada `Sprint4_Entrega` y mete dentro **ESTOS 3 ELEMENTOS**:
+
+1.  📄 **El archivo de mundo:**
+      * `sprint4_completo.world` (o como lo hayas llamado al final).
+2.  📁 **La carpeta de tu tablero:**
+      * Copia la carpeta entera `Building_Tablero` que tienes en `~/.gazebo/models/`.
+      * *(Esta carpeta es vital porque dentro tiene la imagen "Winter is Coming" y los ArUcos).*
+3.  📁 **La carpeta de tu robot modificado:**
+      * Copia la carpeta entera de tu robot (la copia que hiciste con el ArUco ID 5 pegado) que también está en `~/.gazebo/models/`.
+
+Comprime esa carpeta `Sprint4_Entrega` en un **.zip**.
+
+-----
+
+### 2\. Instrucciones para tu compañero
+
+Cuando le pases el ZIP, dile que **NO** abra el archivo `.world` directamente o fallará. Pásale estas instrucciones (copia y pega si quieres):
+
+#### 📝 Instrucciones de instalación:
+
+1.  **Instalar los Modelos:**
+
+      * Descomprime el ZIP.
+      * Coge las carpetas **`Building_Tablero`** y **`[Nombre_De_Tu_Robot]`** y cópialas dentro de tu carpeta de modelos de Gazebo:
+          * Ruta: `/home/TU_USUARIO/.gazebo/models/`
+          * *(Recuerda pulsar `Ctrl+H` en la carpeta personal para ver la carpeta oculta `.gazebo`).*
+
+2.  **Preparar el entorno (IMPORTANTE):**
+
+      * Para que Gazebo encuentre los componentes del TurtleBot base, abre una terminal y ejecuta esto (o añádelo al `.bashrc`):
+        ```bash
+        export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:/opt/ros/foxy/share/turtlebot3_gazebo/models
+        ```
+
+3.  **Lanzar el mundo:**
+
+      * Ahora sí, desde la terminal, ve a donde tengas el archivo `.world` y ejecútalo:
+        ```bash
+        gazebo sprint4_completo.world
+        ```
+
+-----
+
+### Resumen Visual de la estructura
+
+Así es como debe quedar la estructura en el ordenador de tu compañero para que funcione:
+
+```text
+/home/usuario_compañero/
+├── .gazebo/
+│   └── models/
+│       ├── Building_Tablero/   <-- (Tu carpeta con las texturas)
+│       ├── Tu_Robot_Aruco/     <-- (Tu carpeta del robot modificado)
+│       └── ... (otros modelos)
+└── Escritorio/ (o donde sea)
+    └── sprint4_completo.world  <-- (El archivo que ejecuta)
+```
+
+Si él hace esto, verá **exactamente lo mismo que tú**: el tablero con la imagen bien puesta, el robot con el ArUco "sombrero" y la cámara cenital funcionando.
