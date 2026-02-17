@@ -1,4 +1,3 @@
----
 
 # Instrucciones de ejecución – Sprint 5 (Navegacion) 
 
